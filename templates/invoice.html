@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <link rel="stylesheet" href="/static/bootstrap/bootstrap.css">
+</head>
+<body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">O'My eShop</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/register">Add users</a></li>
+          <li class="active"><a href="/show">Show Users</a></li>
+          <li><a href="/">Add products</a></li>
+          <li class="active"><a href="/show">View Products</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ session['names'] }}</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="col-sm-8 col-sm-offset-2">
+     {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+     {% endwith %}
+
+    <table class="table">
+    <h3 class="text-muted text-center">O'My eShop Invoice</h3>
+        <tr>
+            <th>Item</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Tax</th>
+            <th>Total</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>Electronics delivery</td>
+            <td>O'My eShop delivery</td>
+            <td>Ksh. {{ user.sum_purchase }}</td>
+            <td>Ksh. 0.00</td>
+            <td>Ksh. {{ user.sum_purchase }}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <td>By:</td>
+            <td>O'My eShop delivery</td>
+            <td></td>
+            <td></td>
+            <td>Items sold can't be returned</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="">Print</a></td>
+        </tr>
+    </table>
+    </div>
+</body>
+</html>
+
+
+
+
+
